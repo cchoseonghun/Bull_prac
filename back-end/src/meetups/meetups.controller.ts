@@ -9,7 +9,8 @@ export class MeetupsController {
   join(
     @Param('meetupId') meetupId: number, 
     @Body('userId') userId: number,
-  ): Promise<Object> {
+  // ): Promise<Object> {
+  ) {
     return this.meetupsService.join(meetupId, userId);
   }
 }
