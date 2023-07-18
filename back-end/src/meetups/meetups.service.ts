@@ -32,7 +32,7 @@ export class MeetupsService {
         clearTimeout(wait)
         this.eventEmitter.removeAllListeners(eventName);
         success ? 
-          resolve({ message: '참여 성공' }) : 
+          resolve({ eventName, message: '참여 성공' }) : 
           reject(exception);
       };
       this.eventEmitter.addListener(eventName, listenFn);

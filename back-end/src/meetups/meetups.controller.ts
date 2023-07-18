@@ -11,7 +11,9 @@ export class MeetupsController {
     @Body('userId') userId: number,
   // ): Promise<Object> {
   ) {
+    console.log('MeetupsController - join before');
     const result = await this.meetupsService.join(meetupId, userId);
+    console.log('MeetupsController - join after');
     console.log(result)
     return result;
   }
