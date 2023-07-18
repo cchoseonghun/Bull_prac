@@ -1,20 +1,15 @@
 import { OnQueueActive, Process, Processor } from "@nestjs/bull";
 import { Job } from "bull";
+import { MeetupsService } from "./meetups.service";
 
 @Processor('join')
 export class MeetupsConsumer {
+  constructor(private readonly meetupsService: MeetupsService) {}
 
-  // @OnQueueActive()
+  @OnQueueActive()
   @Process('addJoin')
   async addJoin(job: Job) {
-    console.log(job.data);
-    return {};
+    // console.log(job.data);
+    return await this.meetupsService.addJoin(job.data.meetupId, job.data.userId, job.data.eventName);
   }
-
-  // @OnQueueActive()
-  // onActive(job: Job) {
-  //   console.log(
-  //     `Processing job ${job.id} of type ${job.name} with data ${job.data}...`,
-  //   );
-  // }
 }

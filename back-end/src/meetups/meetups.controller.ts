@@ -6,11 +6,13 @@ export class MeetupsController {
   constructor(private readonly meetupsService: MeetupsService) {}
 
   @Post(':meetupId/join')
-  join(
+  async join(
     @Param('meetupId') meetupId: number, 
     @Body('userId') userId: number,
   // ): Promise<Object> {
   ) {
-    return this.meetupsService.join(meetupId, userId);
+    const result = await this.meetupsService.join(meetupId, userId);
+    console.log(result)
+    return result;
   }
 }
